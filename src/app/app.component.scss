@@ -1,0 +1,39 @@
+// .Summary{
+//     margin-left: 3rem;
+// }
+.btn{
+    background-color: #00a651;
+    color: white;
+    width: 150px;
+    border-radius: 28px;
+}
+// ng-select  {            
+//     min-height: 0px;
+//     border-radius: 10px;
+//     background-color: #fff;
+// }
+// ng-option{
+//     background-color: #fff;
+// }
+// @import "~@ng-select/ng-select/themes/default.theme.css";
+// @import "~@ng-select/ng-select/themes/material.theme.css";
+
+.ng-dropdown-panel .ng-dropdown-panel-items {
+    background: #fff;
+}
+@media (max-width:768px) {
+    .desktop-view{
+        display: none !important;
+    }
+    .mobile-view{
+        display: flex !important;
+    }
+}
+@media (min-width: 1024px){
+    .desktop-view{
+        display: flex !important;
+    }
+    .mobile-view{
+        display: none !important;
+    }
+}

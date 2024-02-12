@@ -1,0 +1,246 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form [formGroup]="signUpForm" (ngSubmit)="SignUp()">
+        <div formGroupName="userData">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" formControlName="password">
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label> Male
+            <input type="radio" value="male" formControlName="gender" />
+          </label>
+          <label> Female
+            <input type="radio" value="female" formControlName="gender" />
+          </label>
+        </div>
+        <div formArrayName="hobbies">
+          <div *ngFor="let hobby of hobbyControls;let i =index">
+            <input type="text" class="form-control" [formControlName]="i">
+          </div>
+          <button class="btn btn-success" (click)="AddHobby()">Add</button>
+        </div>
+        <button class="btn btn-info">Submit</button>
+      </form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div> -->
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand">
+      {{'Sitetitle' | translate }}
+    </a>
+    <span class="form-inline">
+      <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)">
+        <option *ngFor="let language of translate.getLangs()" [value]="language"
+          [selected]="language === translate.currentLang">
+          {{ language }}
+        </option>
+      </select>
+    </span>
+  </div>
+</nav>
+
+<div class="row" [dir]="textDirection">
+  <div class="col-md-3 mt-3 mx-auto expose fixed-content">
+    <div class="card ">
+      <div class="card-body">
+        <h3 class="inner text-center ">{{'-Summary-'|translate}}</h3>
+        <table class="table table_summary">
+          <tbody>
+            <!-- <tr>
+                  <td>{{"Country" | translate}}</td>
+                  <td>{{landing_page_data?.country}}</td>
+                  <td>{{landing_page_data?.country}}</td>
+              </tr> -->
+            <tr>
+              <td>{{'Arrival Date'|translate}}</td>
+              <td>
+                <input type="date" class="form-control">
+              </td>
+            </tr>
+            <tr>
+              <td>{{'Quantity'|translate}}</td>
+              <td>
+                <input type="number" class="form-control" (change)="quatityValidation()" [(ngModel)]="pax_qty">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>{{'Total Nights'|translate}}</label>
+              </td>
+              <td class="text-end">
+                <h4><strong>6</strong> {{'Nights'|translate}}</h4>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>{{'Total Cost'|translate}}</label>
+              </td>
+              <td class="text-end">
+                <h4 class="package_title"><strong>{{'SAR'|translate}} {{total_price}}</strong></h4>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 ">
+    <div class="card-body">
+
+      <div class="card p-4 desktop-view">
+        <form [formGroup]="booking_form">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-label">{{'Full Name'|translate}}</label>
+              <input type="text" class="form-control" formControlName="username">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">{{'Email Adress'|translate}}</label>
+              <input type="email" class="form-control" formControlName="email">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">{{'mobile Number'|translate}}</label>
+              <input type="number" class="form-control" formControlName="mobile">
+            </div>
+          </div>
+
+          <div class="card shadow mt-4" *ngFor="let quantity of t.controls;let i=index" formArrayName="quantities">
+            <div class="card-body">
+              <h5>{{'Passanger '|translate}}{{i+1}}</h5>
+            </div>
+            <div [formGroupName]="i">
+              <div class="row p-3">
+                <div class="col-md-4">
+                  <label class="form-label">{{'Full Name ( as on passport)'|translate}} </label>
+                  <input type="text" class="form-control" formControlName="full_name">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">{{'Date Of Birth'|translate}}</label>
+                  <input type="date" class="form-control" formControlName="dob">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">{{'Passport Image(Only image files)'|translate}} </label>
+                  <input type="file" class="form-control" formControlName="pass_img">
+                </div>
+              </div>
+              <div class="row p-3">
+                <div class="col-md-4">
+                  <label class="form-label">{{'Nationality'|translate}} </label>
+                  <!-- <input type="text" class="form-control" formControlName="nationality"> -->
+                  <!-- <select formControlName="nationality" class="form-control">
+                  <option value="">Select Nationality</option>
+                  <option [value]="" *ngFor="let con of countries">{{con.nationality}}</option>
+                </select> -->
+                  <ng-select formControlName="nationality" class="form-control ">
+                    
+                      <ng-option value="">{{'Select Nationality'|translate}}</ng-option>
+                      <ng-option *ngFor="let cont of countries">{{cont.nationality}}</ng-option>
+                    
+                  </ng-select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">{{'Residence Nationality'|translate}} </label>
+                  <input type="text" class="form-control" formControlName="residence_nationality">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">{{'Passport Number'|translate}}</label>
+                  <input type="text" class="form-control" formControlName="pass_no">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4 text-end mt-4 ">
+              <button class="btn" (click)="registor()">{{'submit'|translate}}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="card p-4 mobile-view">
+        <form [formGroup]="booking_form">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-label">{{'Full Name'|translate}}</label>
+              <input type="text" class="form-control" formControlName="username">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">{{'Email Adress'|translate}}</label>
+              <input type="email" class="form-control" formControlName="email">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">{{'mobile Number'|translate}}</label>
+              <input type="number" class="form-control" formControlName="mobile">
+            </div>
+          </div>
+
+          <div class="card shadow mt-4" *ngFor="let quantity of t.controls;let i=index" formArrayName="quantities">
+            <div class="card-body">
+              <h5>{{'Passanger '|translate}}{{i+1}}</h5>
+            </div>
+            <div [formGroupName]="i">
+              <div class="row p-3">
+                <div class="col-md-4">
+                  <label class="form-label">{{'Full Name ( as on passport)'|translate}} </label>
+                  <input type="text" class="form-control" formControlName="full_name">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">{{'Date Of Birth'|translate}}</label>
+                  <input type="date" class="form-control" formControlName="dob">
+                </div>
+                <!-- <div class="col-md-4">
+                  <label class="form-label">{{'Passport Image(Only image files)'|translate}} </label>
+                  <input type="file" class="form-control" formControlName="pass_img">
+                </div> -->
+              </div>
+              <div class="row p-3">
+                <div class="col-md-4">
+                  <label class="form-label">{{'Nationality'|translate}} </label>
+                  <!-- <input type="text" class="form-control" formControlName="nationality"> -->
+                  <!-- <select formControlName="nationality" class="form-control">
+                  <option value="">Select Nationality</option>
+                  <option [value]="" *ngFor="let con of countries">{{con.nationality}}</option>
+                </select> -->
+                  <ng-select formControlName="nationality" class="form-control ">
+                    
+                      <ng-option value="">{{'Select Nationality'|translate}}</ng-option>
+                      <ng-option *ngFor="let cont of countries">{{cont.nationality}}</ng-option>
+                    
+                  </ng-select>
+                </div>
+                <!-- <div class="col-md-4">
+                  <label class="form-label">{{'Residence Nationality'|translate}} </label>
+                  <input type="text" class="form-control" formControlName="residence_nationality">
+                </div> -->
+                <div class="col-md-4">
+                  <label class="form-label">{{'Passport Number'|translate}}</label>
+                  <input type="text" class="form-control" formControlName="pass_no">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4 text-end mt-4 ">
+              <button class="btn" (click)="registor()">{{'submit'|translate}}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>

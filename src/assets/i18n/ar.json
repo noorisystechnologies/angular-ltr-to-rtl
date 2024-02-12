@@ -1,0 +1,22 @@
+{
+   "-Summary-":"ملخص",
+   "Arrival Date":"تاريخ الوصول",
+   "Quantity":"كمية",
+   "Total Nights":"مجموع الليالي",
+   "Nights":"ليالي",
+   "Total Cost":"التكلفة الإجمالية",
+   "SAR":"ريال سعودي",
+   "Full Name":"الاسم الكامل",
+   "Email Adress":"عنوان البريد الإلكتروني",
+   "Passanger ":"راكب ",
+   "Full Name ( as on passport)":"الاسم الكامل (كما في جواز السفر)",
+   "Date Of Birth":"تاريخ الميلاد",
+   "Passport Image(Only image files)":"صورة جواز السفر (ملفات الصور فقط)",
+   "Nationality":"جنسية",
+   "Select Nationality":"اختر الجنسية",
+   "Residence Nationality":"جنسية الاقامة",
+   "Passport Number":"رقم جواز السفر",
+   "submit":"يُقدِّم",
+   "mobile Number":"رقم الهاتف المحمول"
+   
+}
